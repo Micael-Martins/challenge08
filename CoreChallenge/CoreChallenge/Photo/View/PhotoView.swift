@@ -19,11 +19,13 @@ struct PhotoView: View {
     var body: some View {
         VStack{
             showImage()
+            Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
+                .padding(5)
             PhotosPicker(selection: $viewModel.selectedPhoto, matching: .images) {
                 Text("Selecionar Foto")
                     .modifier(ButtonModifier())
             }
-            .padding(.top, 70)
+            .padding(.top, 40)
             CustomButton(label: "Analisar") {
                 //TODO: Add func do CoreML
             }

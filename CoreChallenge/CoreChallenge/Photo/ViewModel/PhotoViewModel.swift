@@ -15,6 +15,7 @@ class PhotoViewModel {
     
     var image: UIImage?
     var selectedPhoto: PhotosPickerItem?
+    var domestic: Bool = true
     
     func convertDataToImage() async {
         if let selectedPhoto,
@@ -26,5 +27,4 @@ class PhotoViewModel {
             }
         }
     }
-    
 }

@@ -15,18 +15,10 @@ struct HomeView: View {
             CustomButton(label: "Foto", action: {
                 action = "Foto"
             })
-            CustomButton(label: "Audio", action: {
-                action = "Audio"
-            })
         }
         .padding()
         .navigationDestination(item: $action) { action in
-            if action == "Foto" {
-                PhotoView()
-            }
-            if action == "Audio" {
-                AudioView()
-            }
+            PhotoView()
         }
 
     }
