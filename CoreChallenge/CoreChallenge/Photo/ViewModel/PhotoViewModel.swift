@@ -20,7 +20,9 @@ class PhotoViewModel {
         if let selectedPhoto,
            let data = try? await selectedPhoto.loadTransferable(type: Data.self) {
             if let uiimage = UIImage(data: data) {
-                image = uiimage
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    image = uiimage
+                }
             }
         }
     }

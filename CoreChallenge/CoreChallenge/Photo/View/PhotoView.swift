@@ -39,17 +39,26 @@ struct PhotoView: View {
     @ViewBuilder
     func showImage() -> some View {
         if let image = viewModel.image {
-            Image(uiImage: image)
-                .resizable()
-                .imageModifier()
+            ZStack(alignment: .topTrailing) {
+                Image(uiImage: image)
+                    .resizable()
+                    .imageModifier()
+                Button {
+                    withAnimation {
+                        viewModel.selectedPhoto = nil
+                        viewModel.image = nil
+                    }
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                      .font(.title2)
+                      .foregroundColor(.white)
+                      .shadow(radius: 2)
+                      .padding(8)
+                }
+            }
         } else { Placeholder() }
     }
 }
-
-
-
-
-
 #Preview {
     PhotoView()
 }
