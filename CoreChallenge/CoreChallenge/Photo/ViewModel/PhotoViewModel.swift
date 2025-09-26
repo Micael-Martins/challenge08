@@ -1,0 +1,28 @@
+//
+//  PhotoViewModel.swift
+//  CoreChallenge
+//
+//  Created by Thiago de Jesus on 26/09/25.
+//
+
+import Foundation
+import UIKit
+import SwiftUI
+import PhotosUI
+
+@Observable
+class PhotoViewModel {
+    
+    var image: UIImage?
+    var selectedPhoto: PhotosPickerItem?
+    
+    func convertDataToImage() async {
+        if let selectedPhoto,
+           let data = try? await selectedPhoto.loadTransferable(type: Data.self) {
+            if let uiimage = UIImage(data: data) {
+                image = uiimage
+            }
+        }
+    }
+    
+}

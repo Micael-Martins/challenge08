@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @State var action: String? = nil
-    @State var audio: String? = nil
 
     var body: some View {
         VStack {
