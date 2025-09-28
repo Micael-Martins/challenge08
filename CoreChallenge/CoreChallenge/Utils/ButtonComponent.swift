@@ -8,11 +8,22 @@
 import Foundation
 import SwiftUI
 
+/// `CustomButton` é um botão reutilizável e estilizado que
+/// recebe um texto e uma ação a ser executada quando clicado.
+///
+/// Ele aplica um estilo consistente para ser usado em várias telas do app.
 struct CustomButton: View {
     
+    /// Texto exibido dentro do botão.
     let label: String
+    
+    /// Ação executada quando o botão é pressionado.
     let action: () -> Void
     
+    /// Inicializa um botão customizado.
+    /// - Parameters:
+    ///   - label: Texto exibido no botão.
+    ///   - action: Closure chamada quando o botão for pressionado.
     init(label: String, action: @escaping () -> Void){
         self.label = label
         self.action = action
@@ -31,5 +42,3 @@ struct CustomButton: View {
 
     }
 }
-
-
