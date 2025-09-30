@@ -11,7 +11,9 @@ import SwiftUI
 struct CoreChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+                HomeView()
+            }
         }
     }
 }
