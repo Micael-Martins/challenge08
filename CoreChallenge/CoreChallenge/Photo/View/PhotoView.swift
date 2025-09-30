@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import C08_Package_G1
 
 /// `PhotoView` é a tela responsável por selecionar e exibir uma foto.
 /// 
@@ -18,6 +19,7 @@ struct PhotoView: View {
     /// ViewModel que gerencia o estado e os dados da tela,
     /// como a foto selecionada, imagem convertida e resultado da análise.
     @State var viewModel: PhotoViewModel
+    
 
     /// Inicializador que permite injetar um `PhotoViewModel`.
     /// Caso não seja fornecido, cria uma instância padrão.
@@ -30,10 +32,11 @@ struct PhotoView: View {
             // Exibe a imagem escolhida ou um placeholder
             showImage()
             
-            // Exibe o resultado da análise: "Doméstico" ou "Não Doméstico"
-            Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
-                .padding(5)
-            
+            if viewModel.isVisible {
+                // Exibe o resultado da análise: "Doméstico" ou "Não Doméstico"
+                Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
+                    .padding(5)
+            }
             // Picker para o usuário selecionar uma imagem da galeria
             PhotosPicker(selection: $viewModel.selectedPhoto, matching: .images) {
                 Text("Selecionar Foto")
@@ -43,7 +46,10 @@ struct PhotoView: View {
             
             // Botão que acionará a análise da imagem (futuro CoreML)
             CustomButton(label: "Analisar") {
-                // TODO: Implementar integração com CoreML
+                Task{
+                    viewModel.domestic = await PetClassifier.analyze(image: viewModel.image)
+                }
+                viewModel.isVisible = true
             }
         }
         .padding(.bottom, 100)
@@ -68,6 +74,7 @@ struct PhotoView: View {
                     withAnimation {
                         viewModel.selectedPhoto = nil
                         viewModel.image = nil
+                        viewModel.isVisible = false
                     }
                 } label: {
                     Image(systemName: "xmark.circle.fill")

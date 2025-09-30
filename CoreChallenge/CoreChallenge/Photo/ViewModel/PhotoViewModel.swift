@@ -27,6 +27,9 @@ class PhotoViewModel {
     /// Indicador se o animal detectado é doméstico (`true`) ou não (`false`).
     var domestic: Bool = true
     
+    ///indica se o texto deve aparecer ou não
+    var isVisible: Bool = false
+    
     /// Converte os dados da foto selecionada em uma instância de `UIImage`.
     /// 
     /// - Obtém os dados da foto através do `PhotosPickerItem`.
