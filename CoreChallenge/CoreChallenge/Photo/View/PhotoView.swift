@@ -34,8 +34,8 @@ struct PhotoView: View {
             
             if viewModel.isVisible {
                 // Exibe o resultado da análise: "Doméstico" ou "Não Doméstico"
-                Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
-                    .padding(5)
+                //Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
+                    //.padding(5)
             }
             // Picker para o usuário selecionar uma imagem da galeria
             PhotosPicker(selection: $viewModel.selectedPhoto, matching: .images) {
@@ -46,8 +46,15 @@ struct PhotoView: View {
             
             // Botão que acionará a análise da imagem (futuro CoreML)
             CustomButton(label: "Analisar") {
+                
                 Task{
-                    viewModel.domestic = await PetClassifier.analyze(image: viewModel.image)
+                    let manager = PackageManager()
+                    guard let image = viewModel.image else { return }
+                    
+                    viewModel.domestic = await manager.analisar(image: image)
+                    
+                    print(viewModel.domestic?.name ?? "Nenhum")
+                    print(viewModel.domestic?.isPet ?? false)
                 }
                 viewModel.isVisible = true
             }

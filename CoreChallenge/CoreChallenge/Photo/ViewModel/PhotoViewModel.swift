@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import PhotosUI
+import C08_Package_G1
 
 /// `PhotoViewModel` é responsável por gerenciar o estado e os dados
 /// utilizados pela `PhotoView`.
@@ -25,7 +26,7 @@ class PhotoViewModel {
     var selectedPhoto: PhotosPickerItem?
     
     /// Indicador se o animal detectado é doméstico (`true`) ou não (`false`).
-    var domestic: Bool = true
+    var domestic: ResponseAnalyze?
     
     ///indica se o texto deve aparecer ou não
     var isVisible: Bool = false
