@@ -25,6 +25,8 @@ class PhotoViewModel {
     /// Foto bruta selecionada pelo usuário através do `PhotosPicker`.
     var selectedPhoto: PhotosPickerItem?
     
+    var imageIsSelected: Bool = false
+    
     /// Indicador se o animal detectado é doméstico (`true`) ou não (`false`).
     var domestic: ResponseAnalyze?
     
@@ -37,6 +39,8 @@ class PhotoViewModel {
     /// - Se a conversão for bem-sucedida, atualiza a propriedade `image`
     ///   com uma animação suave.
     func convertDataToImage() async {
+        
+        print("cheguei boy")
         if let selectedPhoto,
            let data = try? await selectedPhoto.loadTransferable(type: Data.self) {
             if let uiimage = UIImage(data: data) {

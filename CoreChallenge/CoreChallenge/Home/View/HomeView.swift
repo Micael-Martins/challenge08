@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import PacoteSoundAnalysis
+
 
 /// `HomeView` é a tela inicial do aplicativo.
 ///
@@ -15,6 +17,9 @@ import SwiftUI
 /// recebe um valor diferente de `nil`, ocorre a navegação automática
 /// para a `PhotoView`.
 struct HomeView: View {
+    
+    @StateObject private var audioManager = AudioManager()
+    
     /// Estado que armazena a ação atual do usuário.
     /// - Quando `nil`, nenhuma navegação acontece.
     /// - Quando recebe uma string (ex: `"Foto"`), a navegação é disparada.
@@ -27,6 +32,14 @@ struct HomeView: View {
                 action = "Foto"
             })
         }
+        .task{
+            DispatchQueue.main.async {
+                audioManager.iniciarMonitor(onDetection: {
+                    action = "Foto"
+                    audioManager.pararMonitor()
+                }, classification: "whistling")
+            }
+        }
         .padding()
         // Define a navegação para `PhotoView` quando `action` recebe um valor
         .navigationDestination(item: $action) { action in
@@ -34,6 +47,8 @@ struct HomeView: View {
         }
     }
 }
+
+
 
 #Preview {
     HomeView()

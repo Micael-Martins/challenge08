@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A57354D92E89566F0041033E /* C08_Package_G1 in Frameworks */ = {isa = PBXBuildFile; productRef = A57354D82E89566F0041033E /* C08_Package_G1 */; };
+		3D4967CC2E8C50B600AA6299 /* C08_Package_G1 in Frameworks */ = {isa = PBXBuildFile; productRef = 3D4967CB2E8C50B600AA6299 /* C08_Package_G1 */; };
+		3D4967E82E8C699000AA6299 /* PacoteSoundAnalysis in Frameworks */ = {isa = PBXBuildFile; productRef = 3D4967E72E8C699000AA6299 /* PacoteSoundAnalysis */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,17 +28,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A57354D92E89566F0041033E /* C08_Package_G1 in Frameworks */,
+				3D4967E82E8C699000AA6299 /* PacoteSoundAnalysis in Frameworks */,
+				3D4967CC2E8C50B600AA6299 /* C08_Package_G1 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D4967C72E8C507B00AA6299 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A49AC38C2E846F7B0078C35E = {
 			isa = PBXGroup;
 			children = (
 				A49AC3972E846F7B0078C35E /* CoreChallenge */,
+				3D4967C72E8C507B00AA6299 /* Frameworks */,
 				A49AC3962E846F7B0078C35E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,7 +80,8 @@
 			);
 			name = CoreChallenge;
 			packageProductDependencies = (
-				A57354D82E89566F0041033E /* C08_Package_G1 */,
+				3D4967CB2E8C50B600AA6299 /* C08_Package_G1 */,
+				3D4967E72E8C699000AA6299 /* PacoteSoundAnalysis */,
 			);
 			productName = CoreChallenge;
 			productReference = A49AC3952E846F7B0078C35E /* CoreChallenge.app */;
@@ -101,7 +112,8 @@
 			mainGroup = A49AC38C2E846F7B0078C35E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				A57354D72E89566F0041033E /* XCRemoteSwiftPackageReference "C08_Package_G1" */,
+				3D4967CA2E8C50B600AA6299 /* XCRemoteSwiftPackageReference "C08_Package_G1" */,
+				3D4967E62E8C699000AA6299 /* XCRemoteSwiftPackageReference "Challenge08" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A49AC3962E846F7B0078C35E /* Products */;
@@ -260,9 +272,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2575NPW5UW;
+				DEVELOPMENT_TEAM = HG54MS3295;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Este app utiliza microfone para detectar sons e executar ações por comando de aúdio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,9 +301,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2575NPW5UW;
+				DEVELOPMENT_TEAM = HG54MS3295;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Este app utiliza microfone para detectar sons e executar ações por comando de aúdio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -333,21 +347,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A57354D72E89566F0041033E /* XCRemoteSwiftPackageReference "C08_Package_G1" */ = {
+		3D4967CA2E8C50B600AA6299 /* XCRemoteSwiftPackageReference "C08_Package_G1" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:PedroHenrique004/C08_Package_G1.git";
+			repositoryURL = "https://github.com/PedroHenrique004/C08_Package_G1.git";
 			requirement = {
-				branch = featureTeste;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		3D4967E62E8C699000AA6299 /* XCRemoteSwiftPackageReference "Challenge08" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JuhClovandi/Challenge08";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A57354D82E89566F0041033E /* C08_Package_G1 */ = {
+		3D4967CB2E8C50B600AA6299 /* C08_Package_G1 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A57354D72E89566F0041033E /* XCRemoteSwiftPackageReference "C08_Package_G1" */;
+			package = 3D4967CA2E8C50B600AA6299 /* XCRemoteSwiftPackageReference "C08_Package_G1" */;
 			productName = C08_Package_G1;
+		};
+		3D4967E72E8C699000AA6299 /* PacoteSoundAnalysis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D4967E62E8C699000AA6299 /* XCRemoteSwiftPackageReference "Challenge08" */;
+			productName = PacoteSoundAnalysis;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

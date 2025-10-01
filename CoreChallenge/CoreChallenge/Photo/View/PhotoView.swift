@@ -8,19 +8,23 @@
 import SwiftUI
 import PhotosUI
 import C08_Package_G1
+import PacoteSoundAnalysis
 
 /// `PhotoView` é a tela responsável por selecionar e exibir uma foto.
-/// 
-/// O usuário pode carregar uma imagem da galeria, visualizar a imagem selecionada
-/// e acionar a análise (futuramente integrada ao CoreML). Também é exibido um rótulo
+///
+/// O usuário pode carregar uma imagem da galeria, tanto por um toque no botão quanto
+/// por um assobio, visualizar a imagem selecionada e acionar a análise. Também é exibido um rótulo
 /// indicando se o animal detectado é doméstico ou não.
 struct PhotoView: View {
+    
+    @StateObject private var audioManager = AudioManager()
     
     /// ViewModel que gerencia o estado e os dados da tela,
     /// como a foto selecionada, imagem convertida e resultado da análise.
     @State var viewModel: PhotoViewModel
     
-
+    @State private var isShowingPhotoPicker = false
+    
     /// Inicializador que permite injetar um `PhotoViewModel`.
     /// Caso não seja fornecido, cria uma instância padrão.
     init(viewModel: PhotoViewModel = .init()){
@@ -37,11 +41,21 @@ struct PhotoView: View {
                 //Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
                     //.padding(5)
             }
-            // Picker para o usuário selecionar uma imagem da galeria
-            PhotosPicker(selection: $viewModel.selectedPhoto, matching: .images) {
+            
+            // O botão agora apenas ativa o estado que mostra o seletor de fotos.
+            Button(action: {
+                isShowingPhotoPicker = true
+            }) {
                 Text("Selecionar Foto")
                     .modifier(ButtonModifier())
             }
+
+            // Ele é acionado quando `isShowingPhotoPicker` se torna `true`.
+            .photosPicker(
+                isPresented: $isShowingPhotoPicker,
+                selection: $viewModel.selectedPhoto,
+                matching: .images
+            )
             .padding(.top, 40)
             
             // Botão que acionará a análise da imagem (futuro CoreML)
@@ -57,6 +71,14 @@ struct PhotoView: View {
                     print(viewModel.domestic?.isPet ?? false)
                 }
                 viewModel.isVisible = true
+            }
+        }
+        .task{
+            DispatchQueue.main.async {
+                audioManager.iniciarMonitor(onDetection: {
+                    isShowingPhotoPicker = true
+                    audioManager.pararMonitor()
+                }, classification: "whistling")
             }
         }
         .padding(.bottom, 100)
@@ -85,10 +107,10 @@ struct PhotoView: View {
                     }
                 } label: {
                     Image(systemName: "xmark.circle.fill")
-                      .font(.title2)
-                      .foregroundColor(.white)
-                      .shadow(radius: 2)
-                      .padding(8)
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .shadow(radius: 2)
+                        .padding(8)
                 }
             }
         } else { Placeholder() }
