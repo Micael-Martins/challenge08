@@ -58,17 +58,23 @@ struct PhotoView: View {
             )
             .padding(.top, 40)
             
-            // Botão que acionará a análise da imagem (futuro CoreML)
+            // Botão que acionará a análise da imagem e a busca de informações
             CustomButton(label: "Analisar") {
-                
-                Task{
+                Task {
                     let manager = PackageManager()
                     guard let image = viewModel.image else { return }
                     
-                    viewModel.domestic = await manager.analisar(image: image)
+                    viewModel.domestic = await manager.analyze(image: image)
                     
+                    // Imprime o resultado da análise inicial
                     print(viewModel.domestic?.name ?? "Nenhum")
                     print(viewModel.domestic?.isPet ?? false)
+                    
+                    // Garante que o nome do animal foi detectado
+                    if let animalName = viewModel.domestic?.name {
+                        // Chama o gerador de informações para imprimir os dados no terminal
+                        await PetCareInfoGenerator.fetchAndPrintCareInfo(for: animalName)
+                    }
                 }
                 viewModel.isVisible = true
             }
