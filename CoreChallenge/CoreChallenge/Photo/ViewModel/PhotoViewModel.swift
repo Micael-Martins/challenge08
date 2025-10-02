@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import PhotosUI
+import C08_Package_G1
 
 /// `PhotoViewModel` é responsável por gerenciar o estado e os dados
 /// utilizados pela `PhotoView`.
@@ -24,8 +25,13 @@ class PhotoViewModel {
     /// Foto bruta selecionada pelo usuário através do `PhotosPicker`.
     var selectedPhoto: PhotosPickerItem?
     
+    var imageIsSelected: Bool = false
+    
     /// Indicador se o animal detectado é doméstico (`true`) ou não (`false`).
-    var domestic: Bool = true
+    var domestic: ResponseAnalyze?
+    
+    ///indica se o texto deve aparecer ou não
+    var isVisible: Bool = false
     
     /// Converte os dados da foto selecionada em uma instância de `UIImage`.
     /// 
@@ -33,6 +39,8 @@ class PhotoViewModel {
     /// - Se a conversão for bem-sucedida, atualiza a propriedade `image`
     ///   com uma animação suave.
     func convertDataToImage() async {
+        
+        print("cheguei boy")
         if let selectedPhoto,
            let data = try? await selectedPhoto.loadTransferable(type: Data.self) {
             if let uiimage = UIImage(data: data) {
