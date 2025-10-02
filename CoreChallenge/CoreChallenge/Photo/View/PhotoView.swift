@@ -25,6 +25,8 @@ struct PhotoView: View {
     
     @State private var isShowingPhotoPicker = false
     
+    var animalName: String = ""
+    
     /// Inicializador que permite injetar um `PhotoViewModel`.
     /// Caso não seja fornecido, cria uma instância padrão.
     init(viewModel: PhotoViewModel = .init()){
@@ -39,7 +41,7 @@ struct PhotoView: View {
             if viewModel.isVisible {
                 // Exibe o resultado da análise: "Doméstico" ou "Não Doméstico"
                 //Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
-                    //.padding(5)
+                //.padding(5)
             }
             
             // O botão agora apenas ativa o estado que mostra o seletor de fotos.
@@ -49,7 +51,7 @@ struct PhotoView: View {
                 Text("Selecionar Foto")
                     .modifier(ButtonModifier())
             }
-
+            
             // Ele é acionado quando `isShowingPhotoPicker` se torna `true`.
             .photosPicker(
                 isPresented: $isShowingPhotoPicker,
@@ -69,14 +71,19 @@ struct PhotoView: View {
                     // Imprime o resultado da análise inicial
                     print(viewModel.domestic?.name ?? "Nenhum")
                     print(viewModel.domestic?.isPet ?? false)
-                    
-                    // Garante que o nome do animal foi detectado
-                    if let animalName = viewModel.domestic?.name {
-                        // Chama o gerador de informações para imprimir os dados no terminal
-                        await PetCareInfoGenerator.fetchAndPrintCareInfo(for: animalName)
-                    }
                 }
                 viewModel.isVisible = true
+            }
+            
+            CustomButton(label: "Ver detalhes") {
+                Task {
+                    if let animalName = viewModel.domestic?.name {
+                        await viewModel.generateDetailsData(animal: animalName)
+                        viewModel.isDetailsVisible = true
+                    } else {
+                        print("É preciso analisar uma imagem primeiro para ver os detalhes.")
+                    }
+                }
             }
         }
         .task{
@@ -94,6 +101,10 @@ struct PhotoView: View {
                 await viewModel.convertDataToImage()
             }
         }
+        .fullScreenCover(isPresented: $viewModel.isDetailsVisible){ // modal de tela cheia
+            DetailsView(content: DetailsModel(feed: viewModel.feed, careTips: viewModel.careTips))
+        }
+        
     }
     
     /// Exibe a imagem selecionada pelo usuário, com botão para removê-la,

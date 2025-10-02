@@ -12,25 +12,28 @@ struct QuadrantView: View {
     let backgroundColor: Color
     let title: String
     let sysImageName: String
-    let description: String
-    
+    let descriptions: String
     
     var body: some View {
         ZStack {
-            backgroundColor
+            backgroundColor.opacity(0.4)
             VStack(spacing: 16) {
                 HStack {
                     Text(title)
                         .font(.title)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                     Image(systemName: sysImageName)
                         .font(.title)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.black)
                 }
-                Text(description)
-                    .foregroundColor(.white)
+                Text(descriptions)
+                    .foregroundColor(.black)
                     .font(.system(size: 16))
+                    .frame(width: 300)
+                    .multilineTextAlignment(.center)
+                
+                
             }
         }
     }

@@ -15,8 +15,8 @@ struct DetailsView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                QuadrantView(backgroundColor: .red.opacity(0.4), title: "Alimentação", sysImageName: "fork.knife", description: content.feed)
-                QuadrantView(backgroundColor: .green.opacity(0.4), title: "Cuidados", sysImageName: "heart.fill", description: content.careTips)
+                QuadrantView(backgroundColor: .blue, title: "Alimentação", sysImageName: "fork.knife", descriptions: content.feed)
+                QuadrantView(backgroundColor: .green, title: "Cuidados", sysImageName: "heart.fill", descriptions: content.careTips)
             }
             .ignoresSafeArea()
             

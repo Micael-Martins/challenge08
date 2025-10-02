@@ -20,7 +20,7 @@ struct PetCareInfoGenerator {
     
     /// Busca informações de cuidados para um animal e imprime no terminal.
     /// - Parameter animalName: O nome do animal para o qual gerar informações.
-    static func fetchAndPrintCareInfo(for animalName: String) async {
+    static func fetchAndPrintCareInfo(for animalName: String) async throws -> InformacoesPet? {
         
         // 1. Verifica se o modelo de IA está disponível no dispositivo
         switch SystemLanguageModel.default.availability {
@@ -28,7 +28,7 @@ struct PetCareInfoGenerator {
             print("--------------------------------------------------")
             print("‼️ ERRO: Apple Intelligence indisponível: \(reason)")
             print("--------------------------------------------------")
-            return
+            break
         case .available:
             print("✅ Apple Intelligence está disponível. Gerando informações...")
             print("--------------------------------------------------")
@@ -57,9 +57,13 @@ struct PetCareInfoGenerator {
             
             print("\nCuidados Essenciais:")
             print(resposta.cuidados)
+            
+          return resposta
 
         } catch {
             print("Ocorreu um erro ao gerar o conteúdo: \(error.localizedDescription)")
         }
+        return nil
+        
     }
 }
