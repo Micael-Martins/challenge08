@@ -39,9 +39,8 @@ struct PhotoView: View {
             showImage()
             
             if viewModel.isVisible {
-                // Exibe o resultado da análise: "Doméstico" ou "Não Doméstico"
-                //Text(viewModel.domestic ? "Doméstico" : "Não Doméstico")
-                //.padding(5)
+                Text(viewModel.domestic?.isPet ?? false ? "Doméstico" : "Não Doméstico")
+                .padding(5)
             }
             
             // O botão agora apenas ativa o estado que mostra o seletor de fotos.
@@ -67,10 +66,7 @@ struct PhotoView: View {
                     guard let image = viewModel.image else { return }
                     
                     viewModel.domestic = await manager.analyze(image: image)
-                    
-                    // Imprime o resultado da análise inicial
-                    print(viewModel.domestic?.name ?? "Nenhum")
-                    print(viewModel.domestic?.isPet ?? false)
+
                 }
                 viewModel.isVisible = true
             }

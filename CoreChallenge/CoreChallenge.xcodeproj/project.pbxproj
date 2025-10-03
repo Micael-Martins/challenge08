@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D4967CC2E8C50B600AA6299 /* C08_Package_G1 in Frameworks */ = {isa = PBXBuildFile; productRef = 3D4967CB2E8C50B600AA6299 /* C08_Package_G1 */; };
-		3D4967E82E8C699000AA6299 /* PacoteSoundAnalysis in Frameworks */ = {isa = PBXBuildFile; productRef = 3D4967E72E8C699000AA6299 /* PacoteSoundAnalysis */; };
+		A5D19DDA2E90203900EB760B /* PacoteSoundAnalysis in Frameworks */ = {isa = PBXBuildFile; productRef = A5D19DD92E90203900EB760B /* PacoteSoundAnalysis */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D4967E82E8C699000AA6299 /* PacoteSoundAnalysis in Frameworks */,
+				A5D19DDA2E90203900EB760B /* PacoteSoundAnalysis in Frameworks */,
 				3D4967CC2E8C50B600AA6299 /* C08_Package_G1 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,7 +81,7 @@
 			name = CoreChallenge;
 			packageProductDependencies = (
 				3D4967CB2E8C50B600AA6299 /* C08_Package_G1 */,
-				3D4967E72E8C699000AA6299 /* PacoteSoundAnalysis */,
+				A5D19DD92E90203900EB760B /* PacoteSoundAnalysis */,
 			);
 			productName = CoreChallenge;
 			productReference = A49AC3952E846F7B0078C35E /* CoreChallenge.app */;
@@ -113,7 +113,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3D4967CA2E8C50B600AA6299 /* XCRemoteSwiftPackageReference "C08_Package_G1" */,
-				3D4967E62E8C699000AA6299 /* XCRemoteSwiftPackageReference "Challenge08" */,
+				A5D19DD82E90203900EB760B /* XCRemoteSwiftPackageReference "Challenge08" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A49AC3962E846F7B0078C35E /* Products */;
@@ -272,7 +272,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HG54MS3295;
+				DEVELOPMENT_TEAM = 2575NPW5UW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Este app utiliza microfone para detectar sons e executar ações por comando de aúdio";
@@ -302,7 +302,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HG54MS3295;
+				DEVELOPMENT_TEAM = 2575NPW5UW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Este app utiliza microfone para detectar sons e executar ações por comando de aúdio";
@@ -357,7 +357,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		3D4967E62E8C699000AA6299 /* XCRemoteSwiftPackageReference "Challenge08" */ = {
+		A5D19DD82E90203900EB760B /* XCRemoteSwiftPackageReference "Challenge08" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JuhClovandi/Challenge08";
 			requirement = {
@@ -373,9 +373,9 @@
 			package = 3D4967CA2E8C50B600AA6299 /* XCRemoteSwiftPackageReference "C08_Package_G1" */;
 			productName = C08_Package_G1;
 		};
-		3D4967E72E8C699000AA6299 /* PacoteSoundAnalysis */ = {
+		A5D19DD92E90203900EB760B /* PacoteSoundAnalysis */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3D4967E62E8C699000AA6299 /* XCRemoteSwiftPackageReference "Challenge08" */;
+			package = A5D19DD82E90203900EB760B /* XCRemoteSwiftPackageReference "Challenge08" */;
 			productName = PacoteSoundAnalysis;
 		};
 /* End XCSwiftPackageProductDependency section */
